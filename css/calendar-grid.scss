@@ -1,0 +1,54 @@
+body {
+    margin:0;
+}
+.calendar {
+    height:100vh;
+    width:100vw;
+    display:flex;
+    flex-direction: column;
+
+    h3 {
+        text-align: center;
+        color:white;
+        background:teal;
+        margin:0;
+        padding:15px 0;
+    }
+    .days {
+        display:grid;    
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows:100%;
+        p {
+            background:darkgrey;
+            color:white;
+            text-align: center;
+            border:1px solid white;
+            margin:0;
+            padding: 0;
+        }        
+        span{
+            display:none;
+        }
+    }
+    .month {
+        flex-grow:1;
+        display:grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        div {
+            background:lightgrey;
+            border:1px solid white;
+            grid-column: auto / auto;
+            grid-row: auto / auto;
+            margin:0;
+            padding: 0;
+            &.first-day-of-month {                
+                grid-column:5;
+            }
+            &.fill-start {
+                grid-column-start: 1;
+                grid-column-end: 5;
+            }
+        }
+    }
+}
