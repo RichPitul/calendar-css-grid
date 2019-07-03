@@ -1,9 +1,9 @@
 body {
     margin:0;
 }
-.calendar {
+.calendar {        
+    width:100vw;    
     height:100vh;
-    width:100vw;
     display:flex;
     flex-direction: column;
 
@@ -34,21 +34,46 @@ body {
         flex-grow:1;
         display:grid;
         grid-template-columns: repeat(7, 1fr);
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-rows: repeat(5, 1fr);
         div {
             background:lightgrey;
             border:1px solid white;
             grid-column: auto / auto;
             grid-row: auto / auto;
             margin:0;
-            padding: 0;
+            position:relative;
+            .day {
+                color:teal;
+                font-size:1em;
+                position: absolute;
+                top:0;
+                right:0;
+                padding:5px;
+            }
             &.first-day-of-month {                
                 grid-column:5;
             }
             &.fill-start {
                 grid-column-start: 1;
                 grid-column-end: 5;
+                padding:15px;
             }
         }
     }
 }
+@media only screen and (max-width: 600px) {
+    .calendar {
+        height:auto;
+        width:100%;
+        .days {
+            display:none;
+        }
+        .month {
+            display: flex;
+            flex-direction: column;
+            div {
+                min-height:45px;                
+            }
+        }
+    }
+  }
