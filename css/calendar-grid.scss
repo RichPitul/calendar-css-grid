@@ -1,9 +1,10 @@
 body {
     margin:0;
+    background:darkslateblue;
 }
 .calendar {        
     width:100vw;    
-    height:100vh;
+    
     display:flex;
     flex-direction: column;
 
@@ -34,29 +35,54 @@ body {
         flex-grow:1;
         display:grid;
         grid-template-columns: repeat(7, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-        div {
+        grid-auto-rows: min-content;
+        > div {
             background:lightgrey;
             border:1px solid white;
             grid-column: auto / auto;
             grid-row: auto / auto;
             margin:0;
             position:relative;
+            padding-top:100%;
+            height:0;
             .day {
                 color:teal;
                 font-size:1em;
                 position: absolute;
                 top:0;
-                right:0;
+                left:0;
                 padding:5px;
+                width:100%;
+                height: 100%;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                font-weight: bold;
+            }
+            .content {
+                overflow: auto;
+                flex-grow: 1;
+                font-weight: normal;
             }
             &.first-day-of-month {                
-                grid-column:5;
+                grid-column:6;
             }
             &.fill-start {
                 grid-column-start: 1;
-                grid-column-end: 5;
-                padding:15px;
+                grid-column-end: 6;
+                padding-top: 0;
+                height: auto;        
+                > div {
+                    font-size:1.4em;
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    padding:15px;
+                    width:100%;
+                    height: 100%;
+                    box-sizing: border-box;
+                    overflow: auto;
+                }
             }
         }
     }
@@ -69,11 +95,27 @@ body {
             display:none;
         }
         .month {
-            display: flex;
-            flex-direction: column;
-            div {
-                min-height:45px;                
+            display: block;
+            > div {
+                min-height:45px;    
+                height:auto;
+                padding-top:0;     
+                .day {
+                    height:auto;
+                    position: relative;
+                    font-size: 1.5em;
+                    
+                }
+                &.fill-start {
+                    > div {
+                        position: relative;
+                    }
+                }       
             }
+        }
+        .content {
+            font-size: 1em;
+            padding-top:1em;
         }
     }
   }

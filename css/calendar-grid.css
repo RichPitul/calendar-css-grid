@@ -1,9 +1,9 @@
 body {
-  margin: 0; }
+  margin: 0;
+  background: darkslateblue; }
 
 .calendar {
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column; }
   .calendar h3 {
@@ -29,27 +29,50 @@ body {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(5, 1fr); }
-    .calendar .month div {
+    grid-auto-rows: min-content; }
+    .calendar .month > div {
       background: lightgrey;
       border: 1px solid white;
       grid-column: auto / auto;
       grid-row: auto / auto;
       margin: 0;
-      position: relative; }
-      .calendar .month div .day {
+      position: relative;
+      padding-top: 100%;
+      height: 0; }
+      .calendar .month > div .day {
         color: teal;
         font-size: 1em;
         position: absolute;
         top: 0;
-        right: 0;
-        padding: 5px; }
-      .calendar .month div.first-day-of-month {
-        grid-column: 5; }
-      .calendar .month div.fill-start {
+        left: 0;
+        padding: 5px;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold; }
+      .calendar .month > div .content {
+        overflow: auto;
+        flex-grow: 1;
+        font-weight: normal; }
+      .calendar .month > div.first-day-of-month {
+        grid-column: 6; }
+      .calendar .month > div.fill-start {
         grid-column-start: 1;
-        grid-column-end: 5;
-        padding: 15px; }
+        grid-column-end: 6;
+        padding-top: 0;
+        height: auto; }
+        .calendar .month > div.fill-start > div {
+          font-size: 1.4em;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 15px;
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          overflow: auto; }
 
 @media only screen and (max-width: 600px) {
   .calendar {
@@ -58,9 +81,19 @@ body {
     .calendar .days {
       display: none; }
     .calendar .month {
-      display: flex;
-      flex-direction: column; }
-      .calendar .month div {
-        min-height: 45px; } }
+      display: block; }
+      .calendar .month > div {
+        min-height: 45px;
+        height: auto;
+        padding-top: 0; }
+        .calendar .month > div .day {
+          height: auto;
+          position: relative;
+          font-size: 1.5em; }
+        .calendar .month > div.fill-start > div {
+          position: relative; }
+    .calendar .content {
+      font-size: 1em;
+      padding-top: 1em; } }
 
 /*# sourceMappingURL=calendar-grid.css.map */
