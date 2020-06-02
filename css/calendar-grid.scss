@@ -3,11 +3,9 @@ body {
     background:darkslateblue;
 }
 .calendar {        
-    width:100vw;    
-    
+    width:100%;    
     display:flex;
     flex-direction: column;
-
     h3 {
         text-align: center;
         color:white;
@@ -27,9 +25,6 @@ body {
             margin:0;
             padding: 0;
         }        
-        span{
-            display:none;
-        }
     }
     .month {
         flex-grow:1;
@@ -87,7 +82,12 @@ body {
         }
     }
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 520px) {
+    .days p span {
+        display: none;
+    }
+}
+@media only screen and (max-width: 300px) {
     .calendar {
         height:auto;
         width:100%;
@@ -104,7 +104,7 @@ body {
                     height:auto;
                     position: relative;
                     font-size: 1.5em;
-                    
+                    padding:15px;
                 }
                 &.fill-start {
                     > div {
